@@ -1,16 +1,21 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
-import TopBar from "./components/subcomponents/TopBar"
+import React from 'react';
+import { createStore, combineReducers } from "redux";
+import { Provider } from "react-redux";
+import messageReducer from "./reducers/MessageReducer";
+import Landing from "./components/Landing"
 
-class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <TopBar />
-      </div>
-    );
-  }
+const store = createStore(combineReducers({
+    messageReducer: messageReducer
+}));
+
+class App extends React.Component {
+    render() {
+        return (
+            <Provider store={store}>
+                <Landing />
+            </Provider>
+        );
+    }
 }
 
 export default App;
